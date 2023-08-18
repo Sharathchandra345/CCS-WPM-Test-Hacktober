@@ -1,11 +1,18 @@
 html {
   background: #212121;
 }
+.imgcont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
 img {
   max-width: 300px;
   height: auto;
-  margin-left: 40%;
-  margin-top: 2%;
 }
 body {
   font-family: "Source Code Pro", monospace;
