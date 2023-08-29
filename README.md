@@ -1,5 +1,7 @@
 # Typing Speed Test Website
 
+Hostel officialy from ccs at https://typingtest.ccstiet.com/
+
 Welcome to the Typing Speed Test Website, a fun and engaging challenge designed for the freshers participating in the university's society fair, hosted by the Creative Computing Society (CCS). This website provides a platform for participants to test and improve their typing speed in a playful and competitive manner.
 
 ![Alt text](/Screenshot%202023-08-18%20164625.png)
