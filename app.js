@@ -20,7 +20,19 @@ var seconds;
 var difficulty=1;
 
 displayTest(difficulty);
+// Ensure that the input box is always focused
+const textInput = document.getElementById("textInput");
 
+// Function to keep the input focused
+const keepFocus = () => {
+  textInput.focus();
+};
+
+// Focus the input when the page loads
+textInput.focus();
+
+// Add event listener to the entire document
+document.addEventListener("click", keepFocus);
 //on Input
 inputItem.addEventListener('input', function(event){
   if(flag===0){
@@ -68,12 +80,11 @@ function limitColor(itema,itemr ){
   itemr.classList.remove('yellow');
 }
 
-//restart the Test
-restartBtn.addEventListener("click",function(){
-
+//function to restart the test
+function restartTest() {
   wordsSubmitted = 0;
   wordsCorrect = 0;
-  flag=0;
+  flag = 0;
 
   time.classList.remove("current");
   cw.classList.remove("current");
@@ -82,13 +93,15 @@ restartBtn.addEventListener("click",function(){
   cw.innerText = wordsCorrect;
   cwName.innerText = "CW";
   inputItem.disabled = false;
-  inputItem.value = '';
+  inputItem.value = "";
   inputItem.focus();
 
   displayTest(difficulty);
   clearInterval(seconds);
   limitVisible();
-});
+}
+//restart the Test
+restartBtn.addEventListener("click", restartTest);
 
 //start the timer countdown
 function timeStart(){
@@ -244,3 +257,11 @@ function randomWords(diff){
   }
   return selectedWords;
 }
+
+//functionality to restart the test on pressing ESC key
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    restartTest();
+  }
+});
