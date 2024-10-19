@@ -73,6 +73,8 @@ function checkInput() {
   const inputWords = inputItem.value.trim().split(/\s+/);
   const currentInputWord = inputWords[inputWords.length - 1];
 
+  let newWordsCorrect = 0;
+
   // Check all words, including the current one
   for (let i = 0; i < Math.max(inputWords.length, words.length); i++) {
     const wordSpan = document.getElementById(`word-${i}`);
@@ -97,33 +99,15 @@ function checkInput() {
           }
         } else {
           letterSpan.classList.remove('correct', 'wrong');
+          allCorrect = false;
         }
       }
-
-      // Handle extra input characters
-      for (let j = wordToCheck.length; j < inputWord.length; j++) {
-        const extraSpan = document.createElement('span');
-        extraSpan.textContent = inputWord[j];
-        extraSpan.classList.add('wrong', 'extra');
-        wordSpan.appendChild(extraSpan);
-        allCorrect = false;
-      }
-
-      // Remove any previously added extra characters
-      const extraChars = wordSpan.querySelectorAll('.extra');
-      extraChars.forEach(char => {
-        if (char.textContent === '' || inputWord.length <= wordToCheck.length) {
-          wordSpan.removeChild(char);
-        }
-      });
 
       // Check if the whole word is correct
-      if (allCorrect && inputWord === wordToCheck) {
+      if (inputWord === wordToCheck) {
         wordSpan.classList.add('correct');
         wordSpan.classList.remove('wrong');
-        if (i === wordsCorrect) {
-          wordsCorrect++;
-        }
+        newWordsCorrect++;
       } else {
         wordSpan.classList.remove('correct');
         if (inputWord !== '') {
@@ -135,13 +119,14 @@ function checkInput() {
     }
   }
 
+  // Update stats
+  wordsSubmitted = inputWords.length - 1;
+  wordsCorrect = newWordsCorrect;
+  cw.innerText = wordsCorrect;
+
   currentWordIndex = inputWords.length - 1;
   currentLetterIndex = currentInputWord.length;
   updateCursor();
-
-  // Update stats
-  wordsSubmitted = inputWords.length - 1;
-  cw.innerText = wordsCorrect;
 
   // Check if test is complete
   if (currentWordIndex >= words.length) {
