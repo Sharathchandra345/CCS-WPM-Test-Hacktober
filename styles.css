@@ -129,3 +129,38 @@ textarea {
   text-align: center;
   margin-bottom: 15px;
 }
+
+.word {
+  position: relative;
+  display: inline-block;
+  margin-right: 0.3em;
+}
+
+.letter {
+  position: relative;
+  transition: color 0.1s ease;
+}
+
+.cursor::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #36bbbd;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.correct {
+  color: #29bb89;
+}
+
+.wrong {
+  color: #e84545;
+}
